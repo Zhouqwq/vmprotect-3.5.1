@@ -1,0 +1,35 @@
+name: build
+on: [pull_request, push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+ 
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v2
+       
+    - name: setup vsdevenv
+      uses: seanmiddleditch/gha-setup-vsdevenv@master
+ 
+    - name: Install Qt
+      run: |
+        pip install aqtinstall
+        mkdir Qt
+        cd Qt
+        aqt install-qt windows desktop 5.12.12 win32_msvc2017
+        aqt install-qt windows desktop 5.12.12 win64_msvc2017_64
+         
+    - name: build x64
+      shell: cmd
+      run: |
+        set QTDIR=%GITHUB_WORKSPACE%\Qt\5.12.12\msvc2017_64
+        set PATH=%PATH%;%GITHUB_WORKSPACE%\Qt\5.12.12\msvc2017_64\bin
+        cmd.exe /c build-libffi.bat
+        cmd.exe /c build-ultimate-x64.bat
+ 
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+          name: vmp
+          path: bin
