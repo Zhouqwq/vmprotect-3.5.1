@@ -14,3 +14,5 @@ windeployqt "%ROOT_DIR%\bin\64\Ultimate\VMProtect.exe"
 
 copy "%ROOT_DIR%\bin\32\Release\*" "%ROOT_DIR%\bin\64\Ultimate"
 copy "%ROOT_DIR%\bin\64\Release\*" "%ROOT_DIR%\bin\64\Ultimate"
+
+copy "%ROOT_DIR%\VMProtectLicense.ini" "%ROOT_DIR%\bin\64\Ultimate"
