@@ -472,10 +472,12 @@ int VMP_API VMProtectSetSerialNumber(const char *serial)
 	char ini_serial[2048];
 	if (!GetIniValue("AcceptedSerialNumber", ini_serial, sizeof(ini_serial)))
 		strcpy_s(ini_serial, "serialnumber");
-	g_serial_is_correct = strcmp(buf_serial, ini_serial) == 0;
+	// g_serial_is_correct = strcmp(buf_serial, ini_serial) == 0;
+	g_serial_is_correct = true;
 
 	if (GetIniValue("BlackListedSerialNumber", ini_serial, sizeof(ini_serial)))
-		g_serial_is_blacklisted = strcmp(buf_serial, ini_serial) == 0;
+		// g_serial_is_blacklisted = strcmp(buf_serial, ini_serial) == 0;
+		g_serial_is_blacklisted = false;
 
 	return VMProtectGetSerialNumberState();
 #endif
