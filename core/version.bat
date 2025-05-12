@@ -4,10 +4,10 @@ echo version.bat: generating build number...
 SET version_h=%1core\version.h
 SET info_plist=%1app\vmprotect_gui.app\Contents\Info.plist
 
-SET major=1
-SET minor=0
-SET patch=0
-SET build=0
+SET major=3
+SET minor=5
+SET patch=1
+SET build=1024
 
 IF "%bamboo_VMP_MAJOR%" neq "" SET major=%bamboo_VMP_MAJOR%
 IF "%bamboo_VMP_MINOR%" neq "" SET minor=%bamboo_VMP_MINOR%
